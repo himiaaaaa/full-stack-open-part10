@@ -10,6 +10,7 @@ const theme = {
     fontSizes: {
       body: 14,
       subheading: 16,
+      heading: 18,
       appBarHeading: 20
     },
     fonts: {
@@ -21,7 +22,8 @@ const theme = {
     },
     padding: {
         appBarTop: Constants.statusBarHeight,
-        appBarBottom: 15
+        appBarBottom: 15,
+        normal: 5
     }
   };
   
