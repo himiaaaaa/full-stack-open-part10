@@ -1,4 +1,5 @@
-import { Pressable, View, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import { Link } from 'react-router-native';
 
 import NativeText from './Text';
 
@@ -8,8 +9,11 @@ const styles = StyleSheet.create({
     appBar:{
         backgroundColor: theme.colors.textPrimary,
         paddingTop: theme.padding.appBarTop,
-        paddingBottom: theme.padding.appBarBottom
+        paddingBottom: theme.padding.appBarBottom,
     },
+    Link: {
+        marginTop: 5,    
+    }
 })
 
 const AppBars = ({...props}) => {
@@ -20,15 +24,18 @@ const AppBars = ({...props}) => {
     return <View style={appBarStyle} {...props} />;
 }
 
-const onPressFunction = () => {
+/* const onPressFunction = () => {
     null
-}
+} */
 
 const AppBar = () => {
   return <AppBars>
-            <Pressable onPress={onPressFunction}>
+            <Link to='/'>
                 <NativeText style='appBar'>Repositories</NativeText>
-            </Pressable>       
+            </Link>
+            <Link to='/signIn' style={styles.Link}>
+                <NativeText style='appBar'>Sign In</NativeText>
+            </Link>         
         </AppBars>;
 };
 

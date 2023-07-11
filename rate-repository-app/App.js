@@ -1,6 +1,8 @@
 import { View, StyleSheet } from "react-native";
 import Main from "./src/components/Main";
 import Constants from 'expo-constants';
+import { NativeRouter } from "react-router-native";
+import { StatusBar } from "expo-status-bar";
 
 const styles = StyleSheet.create({
   container: {
@@ -13,9 +15,15 @@ const styles = StyleSheet.create({
 
 const App = () => {
   return (
-    <View style={styles.container}>
-        <Main />
-    </View>
+    <>
+      <NativeRouter>
+        <View style={styles.container}>
+          <Main />
+        </View>
+      </NativeRouter>
+      <StatusBar style='auto' />
+    </>
+    
   
   )
 }
