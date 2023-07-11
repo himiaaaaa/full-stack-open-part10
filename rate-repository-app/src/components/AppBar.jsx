@@ -1,4 +1,4 @@
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
 import { Link } from 'react-router-native';
 
 import NativeText from './Text';
@@ -12,8 +12,9 @@ const styles = StyleSheet.create({
         paddingBottom: theme.padding.appBarBottom,
     },
     Link: {
-        marginTop: 5,    
-    }
+        marginLeft: 15,  
+    },
+
 })
 
 const AppBars = ({...props}) => {
@@ -30,12 +31,14 @@ const AppBars = ({...props}) => {
 
 const AppBar = () => {
   return <AppBars>
-            <Link to='/'>
+           <ScrollView horizontal>
+              <Link to='/'>
                 <NativeText style='appBar'>Repositories</NativeText>
-            </Link>
-            <Link to='/signIn' style={styles.Link}>
-                <NativeText style='appBar'>Sign In</NativeText>
-            </Link>         
+              </Link>
+              <Link to='/signIn' style={styles.Link}>
+                  <NativeText style='appBar'>Sign In</NativeText>
+              </Link>
+           </ScrollView>            
         </AppBars>;
 };
 
