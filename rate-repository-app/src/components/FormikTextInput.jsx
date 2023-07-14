@@ -7,7 +7,7 @@ import theme from "../theme";
 
 const styles = StyleSheet.create({
     errorText: {
-        marginTop: 5
+        marginTop: 5,
     },
     input: {
         backgroundColor: theme.colors.textThird,
@@ -30,7 +30,7 @@ const FormikTextInput = ({ name, ...props }) => {
                 style={styles.input}
                 {...props}
             />
-            {showError && <Text style={styles.errorText}>{meta.errpr}</Text>}
+            {showError && <Text style={styles.errorText}>{meta.error}</Text>}
         </>
     )
 }
