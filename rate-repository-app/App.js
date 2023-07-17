@@ -18,6 +18,9 @@ const styles = StyleSheet.create({
 })
 
 const App = () => {
+  
+  console.log(Constants.expoConfig.extra.env) //manifest is not working
+
   return (
     <>
       <NativeRouter>
