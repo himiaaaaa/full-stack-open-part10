@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
 })
 
 const RepositoryItem = ({ fullName, description, language, url, stars, forks, reviews, rating}) => (
-    <View style={styles.container}>
+    <View testID="repositoryItem" style={styles.container}>
         <CardHeader fullName={fullName} description={description} language={language} url={url}/>
         <CardBody stars={stars} forks={forks} reviews={reviews} rating={rating} />
     </View>
