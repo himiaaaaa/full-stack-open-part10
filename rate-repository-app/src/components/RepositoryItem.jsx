@@ -1,7 +1,8 @@
 import React from "react";
-import { View, StyleSheet, Image } from "react-native";
+import { View, StyleSheet, Image, Pressable, Text as ButtonText } from "react-native";
 import Text from './Text'
 import theme from "../theme";
+
 
 const CardHeaderStyles = StyleSheet.create({
     container: {
@@ -35,6 +36,15 @@ const CardHeaderStyles = StyleSheet.create({
         marginTop: 5,
         alignSelf: 'flex-start',
         borderRadius: 5,
+    },
+    button: {
+        backgroundColor: '#4169e1',
+        padding: 10,
+        margin: 10,
+    },
+    buttonText: {
+        textAlign: 'center',
+        color: 'white'
     }
 });
 
@@ -98,11 +108,18 @@ const styles = StyleSheet.create({
     }
 })
 
-const RepositoryItem = ({ fullName, description, language, url, stars, forks, reviews, rating}) => (
-    <View testID="repositoryItem" style={styles.container}>
-        <CardHeader fullName={fullName} description={description} language={language} url={url}/>
-        <CardBody stars={stars} forks={forks} reviews={reviews} rating={rating} />
-    </View>
+const RepositoryItem = ({ fullName, description, language, url, stars, forks, reviews, rating, singleView, pressHandle}) => (
+       <View testID="repositoryItem" style={styles.container}>
+          <CardHeader fullName={fullName} description={description} language={language} url={url}/>
+          <CardBody stars={stars} forks={forks} reviews={reviews} rating={rating} />
+          { singleView ?
+            <Pressable style={CardHeaderStyles.button} onPress={pressHandle}>
+                <ButtonText style={CardHeaderStyles.buttonText}>Open in Github</ButtonText>
+            </Pressable>
+            :
+            null
+          }
+      </View>   
 )
 
 export default RepositoryItem;
