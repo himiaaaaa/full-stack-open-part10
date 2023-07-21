@@ -39,9 +39,14 @@ const AppBar = () => {
                 <NativeText style='appBar'>Repositories</NativeText>
               </Link>
               { me ?
-                <Link to='/signIn' style={styles.Link} OnPress={signOut}>
-                  <NativeText style='appBar' >Sign Out</NativeText>
-                </Link>  
+                <>
+                  <Link to='/createAReview' style={styles.Link}>
+                    <NativeText style='appBar' >Create a Review</NativeText>
+                  </Link>
+                  <Link to='/signIn' style={styles.Link} OnPress={signOut}>
+                    <NativeText style='appBar' >Sign Out</NativeText>
+                  </Link>  
+                </>
                 :
                 <Link to='/signIn' style={styles.Link}>
                   <NativeText style='appBar'>Sign In</NativeText>
