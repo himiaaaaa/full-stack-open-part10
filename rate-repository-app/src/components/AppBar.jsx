@@ -48,9 +48,15 @@ const AppBar = () => {
                   </Link> 
                 </>
                 :
-                <Link to='/signIn' style={styles.Link}>
-                  <NativeText style='appBar'>Sign In</NativeText>
-                </Link>
+                <>
+                  <Link to='/signIn' style={styles.Link}>
+                    <NativeText style='appBar'>Sign In</NativeText>
+                  </Link>
+                  <Link to='/signUp' style={styles.Link}>
+                    <NativeText style='appBar'>Sign Up</NativeText>
+                  </Link>
+                </>
+                
               }
            </ScrollView>            
         </AppBars>;
