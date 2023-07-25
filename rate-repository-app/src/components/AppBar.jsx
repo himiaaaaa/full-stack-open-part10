@@ -16,7 +16,6 @@ const styles = StyleSheet.create({
     Link: {
         marginLeft: 15,  
     },
-
 })
 
 const AppBars = ({...props}) => {
@@ -34,7 +33,7 @@ const AppBar = () => {
     const [signOut] = useSignOut();
 
   return <AppBars>
-           <ScrollView horizontal>
+           <ScrollView horizontal={true} >
               <Link to='/'>
                 <NativeText style='appBar'>Repositories</NativeText>
               </Link>
@@ -42,6 +41,9 @@ const AppBar = () => {
                 <>
                   <Link to='/createAReview' style={styles.Link}>
                     <NativeText style='appBar' >Create a Review</NativeText>
+                  </Link>
+                  <Link to='/myReview' style={styles.Link}>
+                    <NativeText style='appBar' >My Review</NativeText>
                   </Link>
                   <Link to='/signIn' style={styles.Link} onPress={signOut}>
                     <NativeText style='appBar' >Sign Out</NativeText>
