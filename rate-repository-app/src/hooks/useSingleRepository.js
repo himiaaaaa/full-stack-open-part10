@@ -1,22 +1,35 @@
 import { useQuery } from "@apollo/client";
 import { SINGLE_REPOSITORY } from "../graphql/queries";
-import { Text } from "react-native";
 
-const useSingleRepository = (id) => {
-    const { loading, data, error } = useQuery(SINGLE_REPOSITORY, {
+const useSingleRepository = (id, first) => {
+    const { loading, data, fetchMore, ...result } = useQuery(SINGLE_REPOSITORY, {
         fetchPolicy: 'cache-and-network',
-        variables: { id }
+        variables: { id, first }
     })
     console.log('useSingleRepositoryid', id)
 
-    if (loading) return <Text>Loading...</Text>;
+    const handleFetchMore = () => {
+      const canFetchMore = !loading && data?.repository.reviews.pageInfo.hasNextPage;
 
-    if (error) {
-      console.log('errorre', error);
-      return <Text>Error</Text>;
+      if(!canFetchMore){
+        return;
+      }
+
+      fetchMore({
+        variables: {
+          id, 
+          first,
+          after: data.repository.reviews.pageInfo.endCursor
+        }
+      })
     }
 
-    return { repository: data?.repository }
+    return { 
+      repository: data?.repository,
+      fetchMore: handleFetchMore,
+      loading,
+      ...result
+    }
 }
 
 export default useSingleRepository;
