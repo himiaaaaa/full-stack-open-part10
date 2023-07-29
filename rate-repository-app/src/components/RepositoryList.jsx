@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
-export const RepositoryListContainer = ({ repositories, order, setOrder }) => {
+export const RepositoryListContainer = ({ repositories, order, setOrder, onEndReach }) => {
     const repositoryNodes = repositories
       ? repositories.edges.map(edge => edge.node)
       : [];
@@ -54,6 +54,8 @@ export const RepositoryListContainer = ({ repositories, order, setOrder }) => {
             <Picker.Item label="Lowest rated repositories" value="lowestRated" />
           </Picker>
         )}  
+        onEndReached={onEndReach}
+        onEndReachedThreshold={0.5}
       />
     );
 }
@@ -67,31 +69,45 @@ const RepositoryList = () => {
 
   let orderBy;
   let orderDirection;
+  let first;
 
   switch(order){
     case 'latest':
     
       orderBy = 'CREATED_AT';
       orderDirection = 'DESC'; 
+      first = 4;
       break;
 
     case 'highestRated':
 
       orderBy = 'RATING_AVERAGE';
       orderDirection = 'DESC';
+      first = 4;
       break;
 
     case 'lowestRated':
 
       orderBy = 'RATING_AVERAGE';
       orderDirection = 'ASC';
+      first = 4;
       break;
       
     }
   
-  const {repositories} = useRepositories(orderBy, orderDirection, searchKeyword);
+  const { repositories, fetchMore } = useRepositories(
+      orderBy, 
+      orderDirection, 
+      searchKeyword,  
+      first,
+  );
 
-  console.log('repositoryListFilter', orderBy, orderDirection, order, searchKeyword)
+
+  console.log('repositoryListFilter', orderBy, orderDirection, order, searchKeyword, first)
+
+  const onEndReach = () => { 
+    fetchMore();
+  }
 
   return (
     <>
@@ -104,6 +120,7 @@ const RepositoryList = () => {
           repositories={repositories} 
           order={order} 
           setOrder={setOrder}
+          onEndReach={onEndReach}
         />
     </>
    
